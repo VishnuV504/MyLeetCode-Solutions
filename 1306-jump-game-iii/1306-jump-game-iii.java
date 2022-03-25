@@ -20,7 +20,7 @@ class Solution {
         boolean pick=false; boolean notPick=false;
         pick = check(curr+arr[curr],arr,dp);
         if(pick)
-            dp[curr]=1;
+            dp[curr]=1; // Input: arr = [3,0,2,1,2], start = 2 dry run this case to understand why i have put this condition 
         else
             dp[curr]=0;
         notPick= check(curr-arr[curr],arr,dp);
