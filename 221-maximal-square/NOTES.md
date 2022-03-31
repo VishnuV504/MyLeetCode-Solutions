@@ -1,0 +1,2 @@
+we have 3 choices if the matrix[i][j] is 1 we can expand to right,bottom
+diagnol we should take minimum of those  to get a perfect square and we have to for everyindex bcoz if we travel from one index the maxarea we will get is the area from that index.
