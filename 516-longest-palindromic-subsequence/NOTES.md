@@ -1,0 +1,3 @@
+same like lcs i have used 2 pointer approcach here if end and start characters are same move i and jth pointeres if not equal  we have to choices we can move ith pointer or jth pointer and there is problem with odd palindrome because we there we have to consider middle character only one time but this code  calculation 2 times so that's y i kept a condition if i==j return 1; it is only for odd palindrome subsequences;
+​
+and other way we can do like same like lcs we can do s2 string as reverse of s1 and apply lcs!
