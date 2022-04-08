@@ -3,9 +3,10 @@ class Solution {
         int[] arr = new int[s.length()];
         int currRow=startPos[0];
         int currCol=startPos[1];
+        HashMap<String,Integer>dp = new HashMap<>();
         for(int i=0;i<s.length();i++)
         {
-            int ans = count(i,currRow,currCol,s,n,new HashMap<String,Integer>());
+            int ans = count(i,currRow,currCol,s,n,dp);
             arr[i]=ans;
         }
         return arr;
