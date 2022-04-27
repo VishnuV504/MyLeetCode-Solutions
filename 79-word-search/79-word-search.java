@@ -12,18 +12,17 @@ class Solution {
         }
         return false;   
     }
+    
     private boolean solve(int curr,int currRow,int currCol,char[][]board,String word,int m,int n)
     {
         if(curr==-1) return true;
         if(currRow<0 ||currCol<0||currRow>=m||currCol>=n||board[currRow][currCol]!=word.charAt(curr)||board[currRow][currCol]=='@') return false;
             char temp=board[currRow][currCol];
             board[currRow][currCol]='@';
-            boolean left=solve(curr-1,currRow,currCol-1,board,word,m,n);
-            boolean right=solve(curr-1,currRow,currCol+1,board,word,m,n);
-            boolean top=solve(curr-1,currRow-1,currCol,board,word,m,n);
-            boolean down=solve(curr-1,currRow+1,currCol,board,word,m,n);
+ if((solve(curr-1,currRow,currCol-1,board,word,m,n)||solve(curr-1,currRow,currCol+1,board,word,m,n)||solve(curr-1,currRow-1,currCol,board,word,m,n)||solve(curr-1,currRow+1,currCol,board,word,m,n))==true) return true;
             board[currRow][currCol]=temp;
-            return left||right||top||down;
+            return false;
+                
     }
     
 }
