@@ -5,21 +5,19 @@ class Solution {
         for(int i=0;i<m;i++)
         {
             int rowFreq[] =new int[10];
-            for(int j=0;j<n;j++)
-            {
-                if(board[i][j]=='.') continue;
-                if(rowFreq[(int)(board[i][j]-'0')]==1) return false;
-                rowFreq[(int)(board[i][j]-'0')]=1;
-            }
-        }
-        for(int i=0;i<m;i++)
-        {
             int colFreq[]= new int[10];
             for(int j=0;j<n;j++)
             {
-                if(board[j][i]=='.') continue;
+                if(board[i][j]!='.')
+                {
+                if(rowFreq[(int)(board[i][j]-'0')]==1) return false;
+                rowFreq[(int)(board[i][j]-'0')]=1;
+                }
+                if((board[j][i]!='.'))
+                {
                 if(colFreq[(int)(board[j][i]-'0')]==1) return false;
                 colFreq[(int)(board[j][i]-'0')]=1;
+                }
             }
         }
         int i=0;
