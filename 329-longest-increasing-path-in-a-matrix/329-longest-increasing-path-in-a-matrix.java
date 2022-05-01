@@ -15,7 +15,7 @@ class Solution {
     private int solve(int i,int j, int matrix[][],int prev,int m,int n,HashMap<String,Integer>dp)
     {
         if(i<0||j<0||i>=m||j>=n||matrix[i][j]<=prev) return 0;
-        String currKey= i+"-"+j+"-"+prev;
+        String currKey= i+"-"+j;
         if(dp.containsKey(currKey)) return dp.get(currKey);
         int len=0;
         for(int l=0;l<4;l++)
