@@ -1,0 +1,1 @@
+just i have to find wether prefixSum-k is already encountered or not
