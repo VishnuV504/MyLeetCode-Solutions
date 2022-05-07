@@ -1,0 +1,2 @@
+outloop should go only for square root of n because if there is a num which is divisble by lesser than square root of n it also has a divisor greater than sqrt of n so it is already marked
+and inner loop should start from sqrt of i and mark all the multiples of i;
