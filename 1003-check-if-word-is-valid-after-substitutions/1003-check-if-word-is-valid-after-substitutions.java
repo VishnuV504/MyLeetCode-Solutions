@@ -1,20 +1,20 @@
 class Solution {
     public boolean isValid(String s) {
-        Stack<Character>st1 = new Stack<>();
+        Deque<Character>dq= new ArrayDeque<>();
         int n=s.length();
         for(int i=0;i<n;i++)
         {
             if(s.charAt(i)!='c')
-                st1.push(s.charAt(i));
+                dq.add(s.charAt(i));
             else
             {
-                if(st1.isEmpty()==true) return false;
-                if(st1.pop()!='b') return false;
-                if(st1.isEmpty()==true) return false;
-                if(st1.pop()!='a') return false;
+                if(dq.isEmpty()==true) return false;
+                if(dq.removeLast()!='b') return false;
+                if(dq.isEmpty()==true) return false;
+                if(dq.removeLast()!='a') return false;
             }
         }
-        return st1.isEmpty();
+        return dq.isEmpty();
         
     }
 }
