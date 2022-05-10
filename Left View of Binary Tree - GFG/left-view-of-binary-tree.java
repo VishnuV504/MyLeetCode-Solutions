@@ -126,13 +126,14 @@ class Tree
     ArrayList<Integer> leftView(Node root)
     {
       // Your code here
-        solve(root,1);
+        solve(root,0);
         return ans;
     }
     private  void solve(Node root,int level)
     {
         if(root==null) return;
-        if(ans.size()<level)
+        //System.out.println(ans.size());
+        if(ans.size()==level)
             ans.add(root.data);
         solve(root.left,level+1);
         solve(root.right,level+1);
