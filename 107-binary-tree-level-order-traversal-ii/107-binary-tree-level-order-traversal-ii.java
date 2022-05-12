@@ -14,28 +14,53 @@
  * }
  */
 class Solution {
+    List<List<Integer>>ans= new ArrayList<List<Integer>>();
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
-        List<List<Integer>>ans= new ArrayList<List<Integer>>();
         if(root==null) return ans;
-        Queue<TreeNode>queue =new LinkedList<TreeNode>();
-        queue.add(root);
-        while(queue.size()!=0)
+        solve(root,1);
+        return ans;
+        
+        //lvl order
+        // Queue<TreeNode>queue =new LinkedList<TreeNode>();
+        // queue.add(root);
+        // while(queue.size()!=0)
+        // {
+        //     int lvlSize=queue.size();
+        //     List<Integer>li =new ArrayList<>();
+        //     while(lvlSize!=0)
+        //     {
+        //         TreeNode curr=queue.peek();
+        //             queue.remove();
+        //         li.add(curr.val);
+        //         if(curr.left!=null)
+        //             queue.add(curr.left);
+        //         if(curr.right!=null)
+        //             queue.add(curr.right);
+        //         lvlSize--;
+        //     }
+        //     ans.add(0,li);
+        // }
+        // return ans;  
+    }
+    //dfs
+    
+    int maxLvl=0;
+    private  void solve(TreeNode root,int lvl)
+    {
+        if(root==null) return;
+        if(ans.size()<lvl)
         {
-            int lvlSize=queue.size();
-            List<Integer>li =new ArrayList<>();
-            while(lvlSize!=0)
-            {
-                TreeNode curr=queue.peek();
-                    queue.remove();
-                li.add(curr.val);
-                if(curr.left!=null)
-                    queue.add(curr.left);
-                if(curr.right!=null)
-                    queue.add(curr.right);
-                lvlSize--;
-            }
+            ArrayList<Integer>li = new ArrayList<>();
+            li.add(root.val);
+            maxLvl=lvl;
             ans.add(0,li);
         }
-        return ans;  
+        else
+        {
+            ans.get(maxLvl-lvl).add(root.val);
+        }
+        solve(root.left,lvl+1);
+        solve(root.right,lvl+1);
+        
     }
 }
