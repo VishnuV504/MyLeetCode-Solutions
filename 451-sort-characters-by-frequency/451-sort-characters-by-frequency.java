@@ -1,30 +1,38 @@
 class Solution {
-    public String frequencySort(String s) {
-        HashMap<Character,Integer>hs1 = new HashMap<>();
-        int n=s.length();
+    public int[] topKFrequent(int[] nums, int k) {
+        HashMap<Integer,Integer>hs1 = new HashMap<>();
+        int n=nums.length;
         for(int i=0;i<n;i++)
         {
-            if(hs1.containsKey(s.charAt(i)))
-                hs1.put(s.charAt(i),hs1.get(s.charAt(i))+1);
+            if(hs1.containsKey(nums[i]))
+                hs1.put(nums[i],hs1.get(nums[i])+1);
             else
-                hs1.put(s.charAt(i),1);
+                hs1.put(nums[i],1);
         }
-PriorityQueue<Pair<Integer,Character>>maxHeap = new PriorityQueue<Pair<Integer,Character>>(Comparator.comparing(Pair::getKey));
-        for(Character Key :hs1.keySet())
-            maxHeap.add(new Pair<>(hs1.get(Key),Key));
-        StringBuilder ans=new StringBuilder();
-        while(maxHeap.size()!=0)
+        PriorityQueue<Pair<Integer,Integer>>minHeap = new PriorityQueue<Pair<Integer,Integer>>(k,Comparator.comparing(Pair::getKey));
+        for(Integer Key :hs1.keySet())
         {
-            char a=maxHeap.peek().getValue();
-            int repeat=maxHeap.peek().getKey();
-            while(repeat!=0)
+            if(minHeap.size()<k)
             {
-                ans.append(a);
-                repeat--;
+                int num=hs1.get(Key);
+                minHeap.add(new Pair<Integer,Integer>(num,Key));
             }
-            maxHeap.remove();
+            else if(minHeap.peek().getKey()<hs1.get(Key))
+            {
+                minHeap.remove();
+                int num=hs1.get(Key);
+                minHeap.add(new Pair<>(num,Key));
+            }
+            //System.out.println(minHeap.peek().getKey());
         }
-        ans.reverse();
-        return ans.toString();  
+        int ans[] = new int[k];
+        int j=0;
+        while(minHeap.size()!=0)
+        {
+            ans[j++]=minHeap.peek().getValue();
+            minHeap.remove();
+        }
+        return ans;
+        
     }
 }
