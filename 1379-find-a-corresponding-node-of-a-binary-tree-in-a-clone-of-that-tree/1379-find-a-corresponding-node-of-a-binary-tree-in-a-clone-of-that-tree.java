@@ -13,7 +13,8 @@ class Solution {
     public final TreeNode getTargetCopy(final TreeNode original, final TreeNode cloned, final TreeNode target) {
         // solve(original,cloned,target);
         // return ans;
-        return solve2(original,cloned,target);    
+        //return solve2(original,cloned,target);    
+        return solve3(original,cloned,target);
     }
     private void solve(TreeNode original,TreeNode clones,TreeNode target)
     {
@@ -39,6 +40,29 @@ class Solution {
             st1.push(new Pair<>(curr1.right,curr2.right)); 
             if(curr1.left!=null)
             st1.push(new Pair<>(curr1.left,curr2.left));
+        }
+        return null;
+    }
+    private TreeNode solve3(TreeNode original,TreeNode clone,TreeNode target)
+    {
+        //iterative bfs
+        Queue<Pair<TreeNode,TreeNode>>q = new LinkedList<Pair<TreeNode,TreeNode>>();
+        q.add(new Pair<>(original,clone));
+        while(q.size()!=0)
+        {
+            int size=q.size();
+            while(size!=0)
+            {
+                TreeNode curr1=q.peek().getKey();
+                TreeNode curr2=q.peek().getValue();
+                q.remove();
+                if(curr1==target) return curr2;
+                if(curr1.left!=null)
+                q.add(new Pair<>(curr1.left,curr2.left));
+                if(curr1.right!=null)
+                q.add(new Pair<>(curr1.right,curr2.right)); 
+                size--;
+            }
         }
         return null;
     }
