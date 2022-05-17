@@ -11,10 +11,10 @@
 class Solution {
     TreeNode ans = new TreeNode(-1);
     public final TreeNode getTargetCopy(final TreeNode original, final TreeNode cloned, final TreeNode target) {
-        // solve(original,cloned,target);
-        // return ans;
-        //return solve2(original,cloned,target);    
-        return solve3(original,cloned,target);
+        solve(original,cloned,target);
+        return ans;
+        // return solve2(original,cloned,target);    
+        // return solve3(original,cloned,target);
     }
     private void solve(TreeNode original,TreeNode clones,TreeNode target)
     {
