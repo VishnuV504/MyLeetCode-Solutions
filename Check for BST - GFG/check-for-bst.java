@@ -117,18 +117,36 @@ public class Solution
     //Function to check whether a Binary Tree is BST or not.
     boolean isBST(Node root)
     {
-        // code here.
-        int prev[] = new int[1];
-        prev[0]=Integer.MIN_VALUE;
-        return solve(root,prev);
+        return solve(root);
     }
-    private boolean solve(Node root,int prev[])
+    int min=Integer.MAX_VALUE;
+    private void minValue(Node root)
+    {
+        if(root==null) return;
+        if(root.data<min)  min=root.data;
+        minValue(root.left);
+        minValue(root.right);
+    }
+    int max=Integer.MIN_VALUE;
+    private void maxValue(Node root)
+    {
+        if(root==null) return;
+        if(root.data>max)max=root.data;
+        maxValue(root.left);
+        maxValue(root.right);
+    }
+    private boolean solve(Node root)
     {
         if(root==null) return true;
-        boolean left=solve(root.left,prev);
-        if(root.data<=prev[0]) return false;
-        else prev[0]=root.data;
-        boolean right=solve(root.right,prev);
+        maxValue(root.left);
+        minValue(root.right);
+        //System.out.println(min+" "+max);
+        if(root.data>=min||root.data<=max)
+        return false;
+        min=Integer.MAX_VALUE;   max=Integer.MIN_VALUE;
+        boolean left=solve(root.left);
+        boolean right=solve(root.right);
         return left&& right;
     }
+    
 }
