@@ -57,8 +57,8 @@ class Solution
         }
         ArrayList<Integer>li = new ArrayList<>();
         while(minHeap.size()!=0)
-            li.add(minHeap.poll());
-            Collections.reverse(li);
+            li.add(0,minHeap.poll());
+            //Collections.reverse(li);
        // li.reverse();
         return li;
     }
