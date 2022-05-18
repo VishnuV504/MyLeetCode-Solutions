@@ -14,47 +14,50 @@
  * }
  */
 class Solution {
-    //it's like find deepest nodes and find lowest common ancestor
-    // brute force find deepest nodes and check for everynode  is that node contain all the nodes which are deepest and find the lowest one than mean LCA
-    int maxLvl=0;
-    HashMap<Integer,Integer>hs1 = new HashMap<>();
-    TreeNode curr= new TreeNode(1);
+    TreeNode LCA=new TreeNode(-1);
+    int target=0; int maxLvl=0;
     public TreeNode subtreeWithAllDeepest(TreeNode root) {
-        findDepthNodes(root,0);
-        findLcs(root);
-        return curr;
+        lvlOrder(root);
+        if(target!=1)solve(root,1);else solve2(root,1);
+        return LCA;
     }
-    private void findDepthNodes(TreeNode root,int lvl)
+    private void lvlOrder(TreeNode root)
     {
-        if(root==null) return;
-        if(lvl>maxLvl)
+        int count=0; int lvl=0;
+        Queue<TreeNode>q = new LinkedList<>();
+        q.add(root);
+        while(q.size()!=0)
         {
-            hs1.clear();
-            maxLvl=lvl;
-            hs1.put(root.val,1);
+            int size=q.size();  count=0;
+            while(size!=0)   
+            {
+                count++;
+                TreeNode curr=q.remove();
+                if(curr.left!=null) q.add(curr.left);
+                if(curr.right!=null) q.add(curr.right);
+                size--;
+            }
+            lvl++;
         }
-        else if(maxLvl==lvl)
-            hs1.put(root.val,1);
-        findDepthNodes(root.left,lvl+1);
-        findDepthNodes(root.right,lvl+1);
+        target=count;
+        maxLvl=lvl;
+        return;
     }
-    int count=0; boolean flag=false;
-    private void findLcs(TreeNode root)
+    private int solve(TreeNode root,int depth)
     {
-        if(root==null) return;
-        count=0; flag=false;
-        isLcs(root);
-        if(flag==true)
-            curr=root;
-        findLcs(root.left);
-        findLcs(root.right);
+        if(root==null) return 0;
+        if(depth==maxLvl) return 1;
+        int left=solve(root.left,depth+1);
+        int right=solve(root.right,depth+1);
+        if(left+right==target) {LCA=root; return 100;}
+        return left+right;
     }
-    private void isLcs(TreeNode root)
+    
+    private void solve2(TreeNode root,int depth)
     {
-        if(root==null) return;
-        if(hs1.containsKey(root.val)) count++;
-        if(count==hs1.size()) flag=true;
-        isLcs(root.left);
-        isLcs(root.right);  
-    }
+         if(root==null) return;
+        if(depth==maxLvl){LCA=root; return;}
+        solve2(root.left,depth+1);
+        solve2(root.right,depth+1);
+    } 
 }
