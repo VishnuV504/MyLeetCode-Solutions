@@ -25,9 +25,9 @@ class pair{
 class Solution {
     public int minDepth(TreeNode root) {
         if(root==null) return 0;
-       // return solve(root);
-        //return bfs(root);
-        return dfs(root);
+        // return solve(root);
+        return bfs(root);
+        //return dfs(root);
     }
     public int solve(TreeNode root)
     {
