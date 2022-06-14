@@ -7,10 +7,8 @@ class Solution {
     }
     private int solve(int i,int j,String word1,String word2,int dp[][])
     {
-        if(i==word1.length())
-            return word2.length()-j;
-        if(j==word2.length())
-            return word1.length()-i;
+        if(i==word1.length()||j==word2.length())
+            return word2.length()-j+word1.length()-i;
         if(dp[i][j]!=-1)return dp[i][j];
         int a=Integer.MAX_VALUE;
         if(word1.charAt(i)==word2.charAt(j))
