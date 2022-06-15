@@ -10,7 +10,6 @@ class Solution {
     {
         if(curr==words.length)
             return 0;
-        String currKey=curr+"-"+prev;
         if(dp[curr][prev+1]!=-1) return dp[curr][prev+1];
         int cons=0;
         if(prev==-1||isValid(words[prev],words[curr]))
