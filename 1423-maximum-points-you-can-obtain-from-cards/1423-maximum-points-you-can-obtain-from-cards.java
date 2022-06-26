@@ -1,24 +1,23 @@
 class Solution {
-    public int maxScore(int[] cardPoints, int m) {
-        int n=cardPoints.length;
-        int arr[]= new int[n+n]; int k=0;
-        for(int i=0;i<n;i++)
-            arr[k++]=cardPoints[i];
-        for(int i=0;i<n;i++)
-            arr[k++]=cardPoints[i];
-        int sum=0;
-        for(int i=n-m;i<n;i++){
-            sum+=arr[i];
-        }
-        int maxSum=sum;
-        int j=n-m; int l=n;
-        while(j<n){
-            sum-=arr[j];
-            sum+=arr[l];
-            j++;l++;
-            //System.out.println(sum);
-            maxSum=Math.max(sum,maxSum);
+    public int maxScore(int[] cardPoints, int k) {
+        int n=cardPoints.length; int size=0;
+        int arr[]= new int[n+n]; int sum=0; int j=n-k;
+        fill(0,arr,cardPoints); int maxSum=0;
+        fill(n,arr,cardPoints);
+        for(int i=n-k;i<n+k;i++){
+            sum+=arr[i];size++;
+            if(size==k){
+                maxSum=Math.max(sum,maxSum);
+                //System.out.println(sum);
+                sum-=arr[j];
+                j++;
+                size--;
+            }
         }
         return maxSum;
+    }
+    private void fill(int j ,int arr[],int cardPoints[]){
+            for(int i=0;i<cardPoints.length;i++)
+            arr[j++]=cardPoints[i];
     }
 }
