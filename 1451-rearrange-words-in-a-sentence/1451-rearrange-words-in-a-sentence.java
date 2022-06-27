@@ -1,27 +1,38 @@
 class Solution {
     public String arrangeWords(String text) {
-        String arr[]=text.split(" ");
-         Arrays.sort(arr, (a, b)->Integer.compare(a.length(), b.length()));
-        String ans="";
+        String arr[]=text.toLowerCase().split(" ");
+        return solve(arr);
+        
+    }
+    public String  solve(String arr[]){
+        HashMap<Integer,ArrayList<String>>hs1 = new HashMap<>();
+        int min=Integer.MAX_VALUE; int max=Integer.MIN_VALUE;
         for(int i=0;i<arr.length;i++){
-            if(i==0){
-                ans+=Character.toUpperCase(arr[0].charAt(0));
-                for(int j=1;j<arr[0].length();j++)
-                    ans+=arr[0].charAt(j);
+            int len=arr[i].length();
+            if(hs1.containsKey(len)){
+                ArrayList<String>li = new ArrayList<>(hs1.get(len));
+                li.add(arr[i]);
+                hs1.put(len,li); 
             }
             else{
-                if(arr[i].charAt(0)>=65 &&arr[i].charAt(0)<=90 ){
-                    ans+=Character.toLowerCase(arr[i].charAt(0));
-                    for(int j=1;j<arr[i].length();j++)
-                        ans+=arr[i].charAt(j);
-                }
-                else
-                    ans+=arr[i];
+                ArrayList<String>li = new ArrayList<>();
+                li.add(arr[i]);
+                hs1.put(len,li);
             }
-            if(i!=arr.length-1)
-            ans+=" ";
+            min=Math.min(min,len);
+            max=Math.max(max,len);
         }
-        return ans;
-        
+        String ans="";
+        for(int i=min;i<=max;i++){
+            if(hs1.containsKey(i)){
+                for(int j=0;j<hs1.get(i).size();j++){
+                    ans+=hs1.get(i).get(j);
+                    if(i==max && j+1==hs1.get(max).size()) continue;
+                    ans+=" ";
+                }
+            }
+        }
+        String ans2=Character.toUpperCase(ans.charAt(0))+ans.substring(1);
+        return ans2;
     }
 }
