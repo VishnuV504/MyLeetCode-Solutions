@@ -16,8 +16,8 @@
 class Solution {
     public boolean isUnivalTree(TreeNode root) {
         int val=root.val;
-        //return solve(root,val);
-        return solve(val,root);
+        return solve(root,val);
+        //return solve(val,root);
         
     }
     private boolean solve(TreeNode root,int val){
