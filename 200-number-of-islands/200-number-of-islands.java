@@ -7,8 +7,8 @@ class Solution {
             for(int j=0;j<n;j++){
                 if(grid[i][j]==49 && visited[i][j]==false){
                     ans++;
-                   // solve(i,j,grid,visited);
-                    solve(i,j,visited,grid);
+                    solve(i,j,grid,visited);
+                   // solve(i,j,visited,grid);
                 }
             }
         }
