@@ -1,0 +1,1 @@
+store all the add back elements which are smaller than curr
