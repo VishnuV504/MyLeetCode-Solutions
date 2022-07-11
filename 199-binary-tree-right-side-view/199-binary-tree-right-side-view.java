@@ -14,10 +14,11 @@
  * }
  */
 class Solution {
+    List<Integer>li = new ArrayList<>();
     public List<Integer> rightSideView(TreeNode root) {
-        List<Integer>li = new ArrayList<>();
         if(root==null) return li;
-        solve(root,li);
+       // solve(root,li);
+        solve(root,0);
         return li;
         
     }
@@ -41,5 +42,15 @@ class Solution {
             if(num!=-1000)
                 li.add(num);
         }
+    }
+    private void solve(TreeNode root,int depth){
+        if(root==null)return ;
+        if(li.size()==depth)li.add(root.val);
+        else if(li.size()>depth)
+            li.set(depth,root.val);
+        solve(root.left,depth+1);
+        solve(root.right,depth+1);
+        
+        
     }
 }
