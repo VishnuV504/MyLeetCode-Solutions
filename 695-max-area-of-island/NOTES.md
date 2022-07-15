@@ -1,2 +1,1 @@
-this will run for number of disconneted ones you dont need run for every one
-if one of the  one is connected to another one if you traverse again from that one also the result will be same only so no need to do again
+​
