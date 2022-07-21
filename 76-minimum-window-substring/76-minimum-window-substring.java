@@ -8,7 +8,6 @@ class Solution {
             freq2[s.charAt(i)]++;
             boolean flag=false;
             while(isEqual(freq,freq2)){
-                System.out.println("me");
                 freq2[(int)s.charAt(j)]--;
                 j++;
                 flag=true;
