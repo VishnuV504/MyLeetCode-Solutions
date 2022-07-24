@@ -10,7 +10,7 @@ class SeatManager {
     }
     
     public void unreserve(int seatNumber) {
-        pq.offer(seatNumber);
+        pq.add(seatNumber);
     }
 }
 
