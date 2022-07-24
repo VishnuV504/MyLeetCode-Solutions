@@ -1,31 +1,30 @@
 class NumberContainers {
     HashMap<Integer,Integer>idx=new HashMap<>();
-    HashMap<Integer,TreeSet<Integer>>num= new HashMap<>();
+    HashMap<Integer,PriorityQueue<Integer>>num= new HashMap<>();
     public NumberContainers() {
         return ;
     }
     
     public void change(int index, int number) {
-        if(idx.containsKey(index)){
-            int prev=idx.get(index);
-            num.get(prev).remove(index);
-            if(num.get(prev).isEmpty())
-                num.remove(prev);
-        }
         if(num.containsKey(number)){
             num.get(number).add(index);
         }
         else{
-            TreeSet<Integer>t= new TreeSet<>();
-            t.add(index);
-            num.put(number,t);
+            PriorityQueue<Integer>pq= new PriorityQueue<>();
+            pq.add(index);
+            num.put(number,pq);
         }
         idx.put(index,number);
     }
     
     public int find(int number) {
         if(!num.containsKey(number)) return -1;
-        return num.get(number).first();
+        while(!(num.get(number).isEmpty())){
+            int n=idx.get(num.get(number).peek());
+            if(n==number)return num.get(number).peek();
+            num.get(number).poll();
+        }
+        return -1;
     }
 }
 
